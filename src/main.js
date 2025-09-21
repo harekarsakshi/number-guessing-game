@@ -17,7 +17,7 @@ const guessButton = document.getElementById("guessBtn");
 const message = document.getElementById("message");
 const guessInput = document.getElementById("guessInput");
 const resetButton = document.getElementById("resetBtn");
-var isGameInProgress = true;
+var isGameInProgress = false;
 
 function generateRandom() {
   const n = Math.floor(Math.random() * 100) + 1;
@@ -27,6 +27,7 @@ function generateRandom() {
 
 guessButton.addEventListener("click", () => {
   const userGuess = Number(guessInput.value);
+  isGameInProgress = true;
 
   if (userGuess === randomNumber) {
     message.textContent = "Congratulations! You guessed it right!";
@@ -38,13 +39,10 @@ guessButton.addEventListener("click", () => {
 });
 
 resetButton.addEventListener("click", () => {
-  randomNumber = generateRandom();
-  guessInput.value = "";
-
   if (isGameInProgress) {
-    message.textContent = "Game has been reset!";
-    isGameInProgress = false;
-  } else {
-    message.textContent = "Game is already reset. Start guessing!";
+    const shouldReset = confirm("Are you sure you want to reset the game?");
+    if (shouldReset) {
+      window.location.reload();
+    }
   }
 });
