@@ -36,8 +36,6 @@ guessButton.addEventListener("click", () => {
   }
 })
 
-  
-
 resetButton.addEventListener("click", () => {
   randomNumber = generateRandom();
   guessInput.value = "";
